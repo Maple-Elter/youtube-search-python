@@ -219,7 +219,7 @@ class PlaylistInternal:
 
     def __getComponents(self) -> None:
         inforenderer = self.responseSource["sidebar"]["playlistSidebarRenderer"]["items"][0]["playlistSidebarPrimaryInfoRenderer"]
-        channelrenderer = self.responseSource["sidebar"]["playlistSidebarRenderer"]["items"][1]["playlistSidebarSecondaryInfoRenderer"]["videoOwner"]["videoOwnerRenderer"]
+        #channelrenderer = self.responseSource["sidebar"]["playlistSidebarRenderer"]["items"][1]["playlistSidebarSecondaryInfoRenderer"]["videoOwner"]["videoOwnerRenderer"]
         videorenderer = self.responseSource["contents"]["twoColumnBrowseResultsRenderer"]["tabs"][0]["tabRenderer"]["content"]["sectionListRenderer"]["contents"][0]["itemSectionRenderer"]["contents"][0]["playlistVideoListRenderer"]["contents"]
         videos = []
         for video in videorenderer:
@@ -253,12 +253,12 @@ class PlaylistInternal:
                 "videoCount": self.__getValue(inforenderer, ["stats", 0, "runs", 0, "text"]),
                 "viewCount": self.__getValue(inforenderer, ["stats", 1, "simpleText"]),
                 "link": self.__getValue(self.responseSource, ["microformat", "microformatDataRenderer", "urlCanonical"]),
-                "channel": {
-                    "id": self.__getValue(channelrenderer, ["title", "runs", 0, "navigationEndpoint", "browseEndpoint", "browseId"]),
-                    "name": self.__getValue(channelrenderer, ["title", "runs", 0, "text"]),
-                    "link": "https_//www.youtube.com" + self.__getValue(channelrenderer, ["title", "runs", 0, "navigationEndpoint", "browseEndpoint", "canonicalBaseUrl"]),
-                    "thumbnails": self.__getValue(channelrenderer, ["thumbnail", "thumbnails"]),
-                }
+                #"channel": {
+                #    "id": self.__getValue(channelrenderer, ["title", "runs", 0, "navigationEndpoint", "browseEndpoint", "browseId"]),
+                #    "name": self.__getValue(channelrenderer, ["title", "runs", 0, "text"]),
+                #    "link": "https_//www.youtube.com" + self.__getValue(channelrenderer, ["title", "runs", 0, "navigationEndpoint", "browseEndpoint", "canonicalBaseUrl"]),
+                #    "thumbnails": self.__getValue(channelrenderer, ["thumbnail", "thumbnails"]),
+                #}
             },
             'videos': videos,
         }
